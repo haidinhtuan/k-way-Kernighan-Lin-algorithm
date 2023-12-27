@@ -12,44 +12,39 @@ This project presents a Java implementation of the Kernighan-Lin algorithm, trad
 ## Pseudocode
 
 ### k-Way Kernighan-Lin Algorithm
-\```latex
-\begin{algorithm}
-\caption{k-Way Kernighan-Lin Algorithm}\label{kla:cap}
-\begin{algorithmic}[1]
-\Procedure{Kernighan-Lin-k}{$G(V, E)$, $k$}
-    \State Initialize a list $S$ containing all vertices
-    \While{length of $S$ $< k$}
-        \State Identify the largest subset $L$ in $S$
-        \State Partition vertices in $L$ into balanced sets $A$ and $B$
-        \Repeat
-            \State Compute $D$ values for all $a \in A$ and $b \in B$
-            \State Let $gv$, $av$, and $bv$ be empty lists
-            \For{$n := 1$ \textbf{to} $|L| / 2$}
-                \State Find $a \in A$ and $b \in B$ to maximize $g = D[a] + D[b] - 2 \times c(a, b)$
-                \State Remove $a$ and $b$ from further consideration in this pass
-                \State Add $g$ to $gv$, $a$ to $av$, and $b$ to $bv$
-                \State Update $D$ values for the elements of $A = A \setminus \{a\}$ and $B = B \setminus \{b\}$
-            \EndFor
-            \State Find $t$ which maximizes $g_{\text{max}}$, the sum of $gv[1], \ldots, gv[t]$
-            \If{$g_{\text{max}} > 0$}
-                \State Exchange $av[1], av[2], \ldots, av[t]$ with $bv[1], bv[2], \ldots, bv[t]$
-            \EndIf
-        \Until{$g_{\text{max}} \leq 0$}
-        \State Replace $L$ in $S$ with two new subsets $A$ and $B$
-    \EndWhile
-    \State \Return $S$ \Comment{List of k subsets}
-\EndProcedure
-\end{algorithmic}
-\end{algorithm}
-\```
 
-## Getting Started
+Pseudo-code:
+```
+Procedure Kernighan-Lin-k(G(V, E), k)
+    Initialize a list S containing all vertices
+    While length of S < k
+        Identify the largest subset L in S
+        Partition vertices in L into balanced sets A and B
+        Repeat
+            Compute D values for all a in A and b in B
+            Let gv, av, and bv be empty lists
+            For n := 1 to |L| / 2
+                Find a in A and b in B to maximize g = D[a] + D[b] - 2 * c(a, b)
+                Remove a and b from further consideration in this pass
+                Add g to gv, a to av, and b to bv
+                Update D values for the elements of A = A \ {a} and B = B \ {b}
+            End For
+            Find t which maximizes g_max, the sum of gv[1], ..., gv[t]
+            If g_max > 0
+                Exchange av[1], av[2], ..., av[t] with bv[1], bv[2], ..., bv[t]
+            End If
+        Until g_max <= 0
+        Replace L in S with two new subsets A and B
+    End While
+    Return S (List of k subsets)
+End Procedure
+```
 
-### Prerequisites
+
+## Prerequisites
 - Java JDK 8 or higher
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone [repository URL]
+## Installation
+Clone the repository and run the KernighanLinProgram.java
+
 
